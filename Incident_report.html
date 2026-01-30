@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fidelity NCRC | Incident Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/incident_report.css">
+    <link rel="icon" type="image/x-icon" href="Untitled.png">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="Untitled.png" alt="Logo" class="logo-small">
+            <div class="logo-text">
+                <div class="main">Fidelity <span>NCRC</span></div>
+                <div class="sub">COMMAND CENTER</div>
+            </div>
+            <button class="toggle-sidebar" id="toggleSidebar">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        
+        <div class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">Dashboard</div>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link">
+                            <i class="fas fa-tachometer-alt nav-icon"></i>
+                            <span>Command Overview</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Reporting</div>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="Incident_report.html" class="nav-link active">
+                            <i class="fas fa-exclamation-triangle nav-icon"></i>
+                            <span>Incident Report</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Incident_table.html" class="nav-link">
+                            <i class="fas fa-table nav-icon"></i>
+                            <span>Incident Reports</span>
+                            <span class="nav-badge" id="incidentCount">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-file-alt nav-icon"></i>
+                            <span>Daily Logs</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-chart-bar nav-icon"></i>
+                            <span>Analytics Reports</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Administration</div>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="personnel.html" class="nav-link">
+                            <i class="fas fa-users nav-icon"></i>
+                            <span>Personnel</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-cog nav-icon"></i>
+                            <span>System Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">J</div>
+                <div class="user-details">
+                    <div class="user-name">John Doe</div>
+                    <div class="user-role">Security Manager</div>
+                </div>
+            </div>
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="page-title">
+                <h1>Incident Report</h1>
+                <p>Document and track security incidents for Fidelity NCRC operations</p>
+            </div>
+            
+            <div class="header-actions">
+                <div class="alert-notification" id="notificationBell">
+                    <i class="fas fa-bell"></i>
+                    <span class="alert-badge" id="notificationCount">0</span>
+                </div>
+                
+                <div class="current-time" id="currentTime">00:00:00 CAT</div>
+            </div>
+        </header>
+        
+        <!-- Incident Report Content -->
+        <div class="incident-content">
+            <div class="section-header">
+                <h2>New Incident Report</h2>
+                <a href="Incident_table.html" class="view-all">View Past Incidents <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+                <div class="progress-fill" id="formProgress"></div>
+            </div>
+            <div class="progress-text" id="progressText">Form Progress: 0%</div>
+            
+            <!-- Alert Messages -->
+            <div class="alert-message" id="successAlert">
+                <i class="fas fa-check-circle"></i> 
+                <span id="successMessage">Incident report submitted successfully!</span>
+            </div>
+            
+            <div class="alert-message alert-error" id="errorAlert">
+                <i class="fas fa-exclamation-triangle"></i> 
+                <span id="errorMessage">Error submitting report. Please try again.</span>
+            </div>
+            
+            <div class="form-container">
+                <form id="incidentForm">
+                    <!-- Basic Information Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-info-circle"></i> Basic Information</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group required">
+                                <label for="incidentTitle">Incident Title</label>
+                                <input type="text" id="incidentTitle" name="title" required 
+                                       placeholder="Brief title describing the incident">
+                                <div class="form-note">Provide a clear, concise title for quick identification</div>
+                            </div>
+                            
+                            <div class="form-group required">
+                                <label for="incidentType">Incident Category</label>
+                                <select id="incidentType" name="type" required>
+                                    <option value="">Select incident category</option>
+                                    <option value="security_breach">Security Breach</option>
+                                    <option value="unauthorized_access">Unauthorized Access</option>
+                                    <option value="equipment_failure">Equipment Failure</option>
+                                    <option value="suspicious_activity">Suspicious Activity</option>
+                                    <option value="cyber_attack">Cyber Attack</option>
+                                    <option value="physical_altercation">Physical Altercation</option>
+                                    <option value="theft">Theft</option>
+                                    <option value="data_breach">Data Breach</option>
+                                    <option value="natural_disaster">Natural Disaster</option>
+                                    <option value="fire_safety">Fire Safety</option>
+                                    <option value="medical_emergency">Medical Emergency</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group required">
+                                <label for="datetime">Date and Time of Incident</label>
+                                <input type="datetime-local" id="datetime" name="datetime" required>
+                                <div class="form-note">Date and time when the incident occurred</div>
+                            </div>
+                            
+                            <div class="form-group required">
+                                <label for="location">Location</label>
+                                <input type="text" id="location" name="location" required placeholder="Building, area, or general location of the incident">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            
+                            
+                            <div class="form-group required">
+                                <label for="reportedBy">Reported By</label>
+                                <input type="text" id="reportedBy" name="reported_by" required 
+                                       value="John Doe" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Incident Details Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-file-alt"></i> Incident Details</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group required full-width">
+                                <label for="description">Incident Description</label>
+                                <textarea id="description" name="description" required 
+                                          placeholder="Provide detailed description of the incident..." 
+                                          rows="5"></textarea>
+                                <div class="form-note">Include: What happened, who was involved, what was affected, sequence of events</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group required">
+                                <label for="priority">Priority Level</label>
+                                <select id="priority" name="priority" required>
+                                    <option value="">Select priority</option>
+                                    <option value="low">Low (Minor impact, routine handling)</option>
+                                    <option value="medium">Medium (Moderate impact, attention required)</option>
+                                    <option value="high">High (Significant impact, immediate attention)</option>
+                                    <option value="critical">Critical (Major impact, emergency response)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group required">
+                                <label for="impactLevel">Impact Level</label>
+                                <select id="impactLevel" name="impact_level" required>
+                                    <option value="">Select impact level</option>
+                                    <option value="minimal">Minimal (No operational impact)</option>
+                                    <option value="minor">Minor (Minor operational impact)</option>
+                                    <option value="moderate">Moderate (Noticeable operational impact)</option>
+                                    <option value="major">Major (Significant operational impact)</option>
+                                    <option value="severe">Severe (Critical operational impact)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="evidence">Evidence & Supporting Information</label>
+                                <textarea id="evidence" name="evidence" 
+                                          placeholder="Describe any evidence collected, witness statements, camera footage, etc." 
+                                          rows="3"></textarea>
+                                <div class="form-note">Include details of evidence, witnesses, and supporting documentation</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Response & Actions Section -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-tasks"></i> Response & Actions</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group required">
+                                <label for="status">Current Status</label>
+                                <select id="status" name="status" required>
+                                    <option value="open">Open (New incident)</option>
+                                    <option value="investigating">Under Investigation</option>
+                                    <option value="contained">Contained</option>
+                                    <option value="resolved">Resolved</option>
+                                    <option value="closed">Closed</option>
+                                </select>
+                                <div class="status-indicator">
+                                    <div class="status-dot open" id="statusDot"></div>
+                                    <span class="form-note" id="statusText">Incident is currently open</span>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="actions">Immediate Actions Taken</label>
+                                <textarea id="actions" name="actions" 
+                                          placeholder="Describe immediate response, containment measures, and initial investigation steps..." 
+                                          rows="4"></textarea>
+                                <div class="form-note">Document all immediate response actions</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Attach Supporting Files</label>
+                                <div class="file-upload">
+                                    <input type="file" id="fileUpload" name="files[]" multiple 
+                                           accept=".jpg,.jpeg,.png,.pdf,.doc,.docx,.txt">
+                                    <label for="fileUpload" class="file-upload-label">
+                                        <i class="fas fa-cloud-upload-alt"></i> Click to upload files
+                                    </label>
+                                </div>
+                                <div class="form-note">Maximum file size: 10MB. Allowed: Images, PDF, Documents</div>
+                                <div id="fileList" class="file-name"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="clearForm">
+                            <i class="fas fa-times btn-icon"></i>
+                            Clear Form
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="saveDraft">
+                            <i class="fas fa-save btn-icon"></i>
+                            Save Draft
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
+                            <i class="fas fa-paper-plane btn-icon"></i>
+                            Submit Report
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <div class="system-status">
+                <div class="status-dot"></div>
+                <span>SYSTEM STATUS: OPERATIONAL</span>
+            </div>
+            <div class="footer-info">
+                <span>Fidelity NCRC Incident Reporting v2.5.0 | User: jdoe</span>
+            </div>
+        </footer>
+    </main>
+    
+    <!-- Auto-save Indicator -->
+    <div class="autosave-indicator" id="autosaveIndicator">
+        <i class="fas fa-save"></i> Draft saved successfully
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/toggle.js"></script>
+    <script src="js/incident_form.js"></script>
+</body>
+</html>

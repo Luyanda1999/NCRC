@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fidelity NCRC | Secure Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="Untitled.png">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <div class="login-logo">
+                <a href="index.html" style="text-decoration: none; font-size: 1.2rem; margin-right: 10px; color: var(--neon-green);">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+                <img src="Untitled.png" alt="Fidelity Services Group Logo">
+                <div class="login-logo-text">
+                    <h1>Fidelity <span>NCRC</span></h1>
+                    <div class="subtitle">NATION COMMAND & RISK CENTER</div>
+                </div>
+            </div>
+            <p>Secure Access to National Command & Risk Center Dashboard</p>
+        </div>
+        
+        <div class="login-box">
+            <h2>Secure Login</h2>
+            <div class="security-level">
+                <i class="fas fa-shield-alt"></i> LEVEL 4 SECURITY CLEARANCE REQUIRED
+            </div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Command ID / Username</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user-secret"></i>
+                        <input type="text" id="username" class="form-control" placeholder="Enter your command ID" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Security Passcode</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-key"></i>
+                        <input type="password" id="password" class="form-control" placeholder="Enter your security passcode" required>
+                    </div>
+                </div>
+                
+                <div class="login-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember this device</label>
+                    </div>
+                    <a href="#" class="forgot-password">
+                        <i class="fas fa-question-circle"></i> Forgot Passcode?
+                    </a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> ACCESS COMMAND CENTER
+                </button>
+                
+                <div class="security-notice">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>Security Notice:</strong> This system is restricted to authorized personnel only. All access attempts are logged and monitored. Unauthorized access is prohibited and may be subject to prosecution.
+                </div>
+            </form>
+        </div>
+        
+        <div class="login-footer">
+            <p>For assistance, contact Command Support: 1-800-NCRC-HELP</p>
+            <p>&copy; Fidelity NCRC. All rights reserved. <span class="alert-pulse" style="color: var(--neon-green);">●</span> SYSTEM SECURE</p>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+       document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            const auth = new AuthHandler();
+            const loginBtn = this.querySelector('.btn');
+            const originalText = loginBtn.innerHTML;
+            
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> AUTHENTICATING...';
+            loginBtn.disabled = true;
+            
+            try {
+                const result = await auth.login(username, password);
+                
+                if (result.success) {
+                    loginBtn.innerHTML = '<i class="fas fa-check"></i> ACCESS GRANTED';
+                    loginBtn.style.background = 'linear-gradient(90deg, #067521, #06923b)';
+                    
+                    // Redirect happens in auth handler
+                } else {
+                    loginBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> ACCESS DENIED';
+                    loginBtn.style.background = 'linear-gradient(90deg, #e63946, #c1121f)';
+                    
+                    setTimeout(() => {
+                        loginBtn.innerHTML = originalText;
+                        loginBtn.disabled = false;
+                        loginBtn.style.background = '';
+                        
+                        // Show error message
+                        alert(result.message || 'Invalid credentials. Please check your Command ID and Passcode.');
+                    }, 2000);
+                }
+            } catch (error) {
+                loginBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> SYSTEM ERROR';
+                loginBtn.style.background = 'linear-gradient(90deg, #e63946, #c1121f)';
+                
+                setTimeout(() => {
+                    loginBtn.innerHTML = originalText;
+                    loginBtn.disabled = false;
+                    loginBtn.style.background = '';
+                    alert('Authentication service unavailable. Please try again later.');
+                }, 2000);
+            }
+        });
+        
+        // Security-themed console message
+        console.log('%cFidelity NCRC Secure Login Portal', 'color: #00ff9d; font-size: 16px; font-weight: bold;');
+        console.log('%cAuthentication protocols active. Unauthorized access attempts will be logged.', 'color: #ffd700; font-size: 12px;');
+    </script>
+</body>
+</html>

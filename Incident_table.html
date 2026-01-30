@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fidelity NCRC | Incident Reports</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/incident_table.css">
+    <link rel="icon" type="image/x-icon" href="Untitled.png">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="Untitled.png" alt="Logo" class="logo-small">
+            <div class="logo-text">
+                <div class="main">Fidelity <span>NCRC</span></div>
+                <div class="sub">COMMAND CENTER</div>
+            </div>
+            <button class="toggle-sidebar" id="toggleSidebar">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        
+        <div class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">Dashboard</div>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link">
+                            <i class="fas fa-tachometer-alt nav-icon"></i>
+                            <span>Command Overview</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Reporting</div>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="Incident_report.html" class="nav-link">
+                            <i class="fas fa-exclamation-triangle nav-icon"></i>
+                            <span>Incident Report</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Incident_table.html" class="nav-link active">
+                            <i class="fas fa-table nav-icon"></i>
+                            <span>Incident Reports</span>
+                            <span class="nav-badge" id="incidentCountBadge">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-file-alt nav-icon"></i>
+                            <span>Daily Logs</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-chart-bar nav-icon"></i>
+                            <span>Analytics Reports</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Administration</div>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="personnel.html" class="nav-link">
+                            <i class="fas fa-users nav-icon"></i>
+                            <span>Personnel</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-cog nav-icon"></i>
+                            <span>System Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">J</div>
+                <div class="user-details">
+                    <div class="user-name">John Doe</div>
+                    <div class="user-role">Security Manager</div>
+                </div>
+            </div>
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="page-title">
+                <h1>Incident Reports</h1>
+                <p>View, manage, and track all security incident reports</p>
+            </div>
+            
+            <div class="header-actions">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search reports...">
+                </div>
+                
+                <div class="alert-notification" id="notificationBell">
+                    <i class="fas fa-bell"></i>
+                    <span class="alert-badge" id="notificationCount">0</span>
+                </div>
+                
+                <div class="current-time" id="currentTime">00:00:00 CAT</div>
+            </div>
+        </header>
+        
+        <!-- Incident Reports Content -->
+        <div class="reports-content">
+            <!-- Statistics Section -->
+            <div class="stats-container" id="statsContainer">
+                <!-- Stats will be loaded dynamically -->
+            </div>
+            
+            <!-- Controls Panel -->
+            <div class="controls-panel">
+                <div class="controls-header">
+                    <div class="controls-title">
+                        <i class="fas fa-filter"></i>
+                        <span>Filters & Controls</span>
+                    </div>
+                    <div class="controls-actions">
+                        <div class="export-container" style="position: relative;">
+                            <button class="btn btn-secondary" id="exportBtn">
+                                <i class="fas fa-file-export"></i> Export
+                            </button>
+                            <div class="export-options" id="exportOptions">
+                                <a href="#" class="export-option" data-format="csv">
+                                    <i class="fas fa-file-csv"></i> Export as CSV
+                                </a>
+                                <a href="#" class="export-option" data-format="pdf">
+                                    <i class="fas fa-file-pdf"></i> Export as PDF
+                                </a>
+                                <a href="#" class="export-option" data-format="excel">
+                                    <i class="fas fa-file-excel"></i> Export as Excel
+                                </a>
+                                <a href="#" class="export-option" data-format="print">
+                                    <i class="fas fa-print"></i> Print Report
+                                </a>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="window.location.href='Incident_report.html'">
+                            <i class="fas fa-plus"></i> New Report
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="filters-row">
+                    <div class="filter-group">
+                        <label class="filter-label">Status</label>
+                        <select class="filter-select" id="statusFilter">
+                            <option value="all">All Statuses</option>
+                            <option value="open">Open</option>
+                            <option value="investigating">Investigating</option>
+                            <option value="contained">Contained</option>
+                            <option value="resolved">Resolved</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">Priority</label>
+                        <select class="filter-select" id="priorityFilter">
+                            <option value="all">All Priorities</option>
+                            <option value="critical">Critical</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">Category</label>
+                        <select class="filter-select" id="categoryFilter">
+                            <option value="all">All Categories</option>
+                            <option value="security_breach">Security Breach</option>
+                            <option value="unauthorized_access">Unauthorized Access</option>
+                            <option value="equipment_failure">Equipment Failure</option>
+                            <option value="suspicious_activity">Suspicious Activity</option>
+                            <option value="cyber_attack">Cyber Attack</option>
+                            <option value="theft">Theft</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="filters-row">
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">Location</label>
+                        <select class="filter-select" id="locationFilter">
+                            <option value="all">All Locations</option>
+                            <option value="main_hq">Main Headquarters</option>
+                            <option value="federal_vault">Federal Reserve Vault</option>
+                            <option value="east_wing">East Wing</option>
+                            <option value="west_wing">West Wing</option>
+                            <option value="parking_garage">Parking Garage</option>
+                            <option value="other_location">Other Location</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">Impact Level</label>
+                        <select class="filter-select" id="impactFilter">
+                            <option value="all">All Impact Levels</option>
+                            <option value="minimal">Minimal</option>
+                            <option value="minor">Minor</option>
+                            <option value="moderate">Moderate</option>
+                            <option value="major">Major</option>
+                            <option value="severe">Severe</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">Sort By</label>
+                        <select class="filter-select" id="sortFilter">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="priority">Priority (High to Low)</option>
+                            <option value="status">Status</option>
+                            <option value="location">Location</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Date Range</label>
+                        <div class="date-range">
+                            <input type="date" class="filter-select" id="dateFrom"><br>
+                            <input type="date" class="filter-select" id="dateTo">
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+                    <button class="btn btn-secondary" id="clearFilters">
+                        <i class="fas fa-times"></i> Clear Filters
+                    </button>
+                    <div class="records-count">
+                        Showing <strong id="visibleCount">0</strong> of <strong id="totalCount">0</strong> incident reports
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reports Table -->
+            <div class="data-table-container">
+                <table class="data-table" id="reportsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Date/Time</th>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Location</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Reported By</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportsTableBody">
+                        <!-- Table rows will be populated by JavaScript -->
+                    </tbody>
+                </table>
+                
+                <!-- Empty State -->
+                <div class="empty-state" id="emptyState">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>No Incident Reports Found</h3>
+                    <p>No reports match your current filters. Try changing filter criteria or create a new report.</p>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination" id="pagination">
+                <button class="pagination-btn" id="firstPage" disabled>
+                    <i class="fas fa-fast-backward"></i> First
+                </button>
+                <button class="pagination-btn" id="prevPage" disabled>
+                    <i class="fas fa-chevron-left"></i> Previous
+                </button>
+                <span class="pagination-info">Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
+                <button class="pagination-btn" id="nextPage" disabled>
+                    Next <i class="fas fa-chevron-right"></i>
+                </button>
+                <button class="pagination-btn" id="lastPage" disabled>
+                    Last <i class="fas fa-fast-forward"></i>
+                </button>
+                <select class="filter-select" id="rowsPerPage" style="margin-left: 15px; width: auto;">
+                    <option value="5">5 per page</option>
+                    <option value="10" selected>10 per page</option>
+                    <option value="25">25 per page</option>
+                    <option value="50">50 per page</option>
+                    <option value="100">100 per page</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <div class="system-status">
+                <div class="status-dot"></div>
+                <span>SYSTEM STATUS: OPERATIONAL</span>
+            </div>
+            <div class="footer-info">
+                <span>Fidelity NCRC Incident Reports v2.5.0 | User: jdoe | Last Refresh: <span id="lastRefresh">Just now</span></span>
+            </div>
+        </footer>
+    </main>
+    
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Confirm Delete
+                </h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this incident report?</p>
+                <div style="background-color: rgba(230, 57, 70, 0.1); padding: 15px; border-radius: 6px; margin: 15px 0;">
+                    <p><strong>Report ID:</strong> <span id="deleteId"></span></p>
+                    <p><strong>Title:</strong> <span id="deleteTitle"></span></p>
+                    <p><strong>Category:</strong> <span id="deleteCategory"></span></p>
+                    <p><strong>Date:</strong> <span id="deleteDate"></span></p>
+                </div>
+                <p style="color: var(--alert-red); font-weight: 600;">
+                    <i class="fas fa-exclamation-circle"></i> Warning: This action cannot be undone. All report data will be permanently deleted.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelDelete">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button class="btn btn-primary" id="confirmDelete" style="background: linear-gradient(90deg, #e63946, #c1121f);">
+                    <i class="fas fa-trash"></i> Delete Report
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- View Report Modal -->
+    <div class="modal modal-lg" id="viewModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-file-alt"></i>
+                    <span id="viewModalTitle">Incident Report Details</span>
+                </h3>
+                <div id="viewModalBadges"></div>
+            </div>
+            <div class="modal-body" id="viewModalBody">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="closeViewModal">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Assign Report Modal -->
+    <div class="modal" id="assignModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-user-check"></i>
+                    Assign Incident Report
+                </h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="assignNotes" class="filter-label">Assignment Notes (Optional)</label>
+                    <textarea class="filter-select" id="assignNotes" rows="3" placeholder="Add any specific instructions or notes..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelAssign">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Close Report Modal -->
+    <div class="modal" id="closeReportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-check-circle"></i>
+                    Close Incident Report
+                </h3>
+            </div>
+            <div class="modal-body">
+                <p>Close this incident report and add resolution details:</p>
+                <div class="form-group" style="margin: 20px 0;">
+                    <label for="closureStatus" class="filter-label">Closure Status</label>
+                    <select class="filter-select" id="closureStatus">
+                        <option value="resolved">Resolved</option>
+                        <option value="closed">Closed</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="resolutionDetails" class="filter-label">Resolution Details</label>
+                    <textarea class="filter-select" id="resolutionDetails" rows="4" placeholder="Describe how the incident was resolved, lessons learned, recommendations..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="resolutionDate" class="filter-label">Resolution Date</label>
+                    <input type="date" class="filter-select" id="resolutionDate">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelClose">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button class="btn btn-primary" id="confirmClose">
+                    <i class="fas fa-check"></i> Close Report
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/toggle.js"></script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fidelity NCRC | Command Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="Untitled.png">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="Untitled.png" alt="Logo" class="logo-small">
+            <div class="logo-text">
+                <div class="main">Fidelity <span>NCRC</span></div>
+                <div class="sub">COMMAND CENTER</div>
+            </div>
+            <button class="toggle-sidebar" id="toggleSidebar">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        
+        <div class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">Dashboard</div>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link active">
+                            <i class="fas fa-tachometer-alt nav-icon"></i>
+                            <span>Command Overview</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Reporting</div>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="Incident_report.html" class="nav-link">
+                            <i class="fas fa-exclamation-triangle nav-icon"></i>
+                            <span>Incident Report</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Incident_table.html" class="nav-link">
+                            <i class="fas fa-table nav-icon"></i>
+                            <span>Incident Reports</span>
+                            <span class="nav-badge">24</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-file-alt nav-icon"></i>
+                            <span>Daily Logs</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-chart-bar nav-icon"></i>
+                            <span>Analytics Reports</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Administration</div>
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-users nav-icon"></i>
+                            <span>Personnel</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-cog nav-icon"></i>
+                            <span>System Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">G</div>
+                <div class="user-details">
+                    <div class="user-name">Glen</div>
+                    <div class="user-role">Command Supervisor</div>
+                </div>
+            </div>
+            <button class="logout-btn" id="logoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Top Header -->
+        <header class="top-header">
+            <div class="page-title">
+                <h1>Command Dashboard</h1>
+                <p>Live monitoring and control center for Fidelity NCRC operations</p>
+            </div>
+            
+            <div class="header-actions">
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search operations...">
+                </div>
+                
+                <div class="alert-notification" id="notificationBell">
+                    <i class="fas fa-bell"></i>
+                    <span class="alert-badge">3</span>
+                </div>
+                
+                <div class="current-time" id="currentTime">00:00:00 UTC</div>
+            </div>
+        </header>
+        
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Status Overview -->
+            <div class="status-overview">
+                <div class="status-card system-active">
+                    <div class="status-header">
+                        <i class="fas fa-shield-alt status-icon"></i>
+                        <span class="status-indicator">ACTIVE</span>
+                    </div>
+                    <div class="status-title">System Status</div>
+                    <div class="status-value">100%</div>
+                    <div class="status-note">All systems operational</div>
+                </div>
+                
+                <div class="status-card alerts-normal">
+                    <div class="status-header">
+                        <i class="fas fa-bell status-icon"></i>
+                        <span class="status-indicator">NORMAL</span>
+                    </div>
+                    <div class="status-title">Active Alerts</div>
+                    <div class="status-value">3</div>
+                    <div class="status-note">Low priority alerts only</div>
+                </div>
+                
+                <div class="status-card team-online">
+                    <div class="status-header">
+                        <i class="fas fa-user-shield status-icon"></i>
+                        <span class="status-indicator">ONLINE</span>
+                    </div>
+                    <div class="status-title">Response Teams</div>
+                    <div class="status-value">12/15</div>
+                    <div class="status-note">3 teams on standby</div>
+                </div>
+                
+                <div class="status-card cameras-active">
+                    <div class="status-header">
+                        <i class="fas fa-video status-icon"></i>
+                        <span class="status-indicator">ACTIVE</span>
+                    </div>
+                    <div class="status-title">Cameras Online</div>
+                    <div class="status-value">247/256</div>
+                    <div class="status-note">9 cameras offline for maintenance</div>
+                </div>
+            </div>
+            
+            <!-- Live Feeds Section -->
+            <div class="section-header">
+                <h2>Live Surveillance Feeds</h2>
+                <a href="#" class="view-all">View All Feeds <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="live-feeds">
+                <div class="feed-card">
+                    <div class="feed-header">
+                        <div class="feed-title">
+                            <i class="fas fa-building"></i>
+                            <span>Main Headquarters</span>
+                        </div>
+                        <span class="feed-status active">LIVE</span>
+                    </div>
+                    <div class="feed-visual">
+                        <div class="feed-visual-content">
+                            <i class="fas fa-video"></i>
+                            <p>Feed: Main Entrance - Camera 01</p>
+                            <p>Resolution: 1080p | 30 FPS</p>
+                        </div>
+                    </div>
+                    <div class="feed-info">
+                        <div class="feed-info-row">
+                            <span class="feed-label">Last Activity:</span>
+                            <span class="feed-value">2 min ago</span>
+                        </div>
+                        <div class="feed-info-row">
+                            <span class="feed-label">AI Detection:</span>
+                            <span class="feed-value">3 objects tracked</span>
+                        </div>
+                        <div class="feed-info-row">
+                            <span class="feed-label">Uptime:</span>
+                            <span class="feed-value">14 days, 6 hours</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feed-card">
+                    <div class="feed-header">
+                        <div class="feed-title">
+                            <i class="fas fa-university"></i>
+                            <span>Federal Reserve Vault</span>
+                        </div>
+                        <span class="feed-status active">LIVE</span>
+                    </div>
+                    <div class="feed-visual">
+                        <div class="feed-visual-content">
+                            <i class="fas fa-lock"></i>
+                            <p>Feed: Vault Entrance - Camera 04</p>
+                            <p>Resolution: 4K | 60 FPS</p>
+                        </div>
+                    </div>
+                    <div class="feed-info">
+                        <div class="feed-info-row">
+                            <span class="feed-label">Last Activity:</span>
+                            <span class="feed-value">No activity</span>
+                        </div>
+                        <div class="feed-info-row">
+                            <span class="feed-label">Access Status:</span>
+                            <span class="feed-value">Secure</span>
+                        </div>
+                        <div class="feed-info-row">
+                            <span class="feed-label">Uptime:</span>
+                            <span class="feed-value">28 days, 12 hours</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feed-card">
+                    <div class="feed-header">
+                        <div class="feed-title">
+                            <i class="fas fa-truck-moving"></i>
+                            <span>Transit Vehicle #T-347</span>
+                        </div>
+                        <span class="feed-status active">LIVE</span>
+                    </div>
+                    <div class="feed-visual">
+                        <div class="feed-visual-content">
+                            <i class="fas fa-satellite"></i>
+                            <p>GPS Tracking Active</p>
+                            <p>Speed: 42 mph | Route: Alpha-7</p>
+                        </div>
+                    </div>
+                    <div class="feed-info">
+                        <div class="feed-info-row">
+                            <span class="feed-label">Location:</span>
+                            <span class="feed-value">5th & Main St</span>
+                        </div>
+                        <div class="feed-info-row">
+                            <span class="feed-label">ETA to Destination:</span>
+                            <span class="feed-value">12 minutes</span>
+                        </div>
+                        <div class="feed-info-row">
+                            <span class="feed-label">Security Status:</span>
+                            <span class="feed-value">Green</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Activity -->
+            <div class="section-header">
+                <h2>Recent Activity</h2>
+                <a href="#" class="view-all">View Activity Log <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="recent-activity">
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon alert">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">Perimeter Breach Detected</div>
+                            <div class="activity-desc">Motion detected at East Gate perimeter fence. AI analysis indicates possible intrusion attempt.</div>
+                            <div class="activity-time">14:23:45 UTC</div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon info">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">Access Granted - Level 4</div>
+                            <div class="activity-desc">Command Supervisor John Doe accessed the Main Server Room using biometric authentication.</div>
+                            <div class="activity-time">13:45:12 UTC</div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon success">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">Cash Transit Completed</div>
+                            <div class="activity-desc">Vehicle #T-347 successfully completed transit to Federal Reserve. All security protocols verified.</div>
+                            <div class="activity-time">12:30:05 UTC</div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon warning">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">Camera Maintenance</div>
+                            <div class="activity-desc">Camera #47 at North Parking taken offline for scheduled maintenance. Backup camera activated.</div>
+                            <div class="activity-time">11:15:33 UTC</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="section-header">
+                <h2>Quick Actions</h2>
+            </div>
+            
+            <div class="quick-actions">
+                <a href="#" class="action-btn">
+                    <i class="fas fa-plus-circle action-icon"></i>
+                    <div class="action-title">New Alert</div>
+                    <div class="action-desc">Create a new security alert</div>
+                </a>
+                
+                <a href="#" class="action-btn">
+                    <i class="fas fa-broadcast-tower action-icon"></i>
+                    <div class="action-title">Dispatch Team</div>
+                    <div class="action-desc">Dispatch response team</div>
+                </a>
+                
+                <a href="#" class="action-btn">
+                    <i class="fas fa-file-export action-icon"></i>
+                    <div class="action-title">Generate Report</div>
+                    <div class="action-desc">Create activity report</div>
+                </a>
+                
+                <a href="#" class="action-btn">
+                    <i class="fas fa-camera action-icon"></i>
+                    <div class="action-title">Camera Control</div>
+                    <div class="action-desc">Manage camera feeds</div>
+                </a>
+                
+                <a href="#" class="action-btn">
+                    <i class="fas fa-user-lock action-icon"></i>
+                    <div class="action-title">Access Logs</div>
+                    <div class="action-desc">View access history</div>
+                </a>
+                
+                <a href="#" class="action-btn">
+                    <i class="fas fa-robot action-icon"></i>
+                    <div class="action-title">AI Settings</div>
+                    <div class="action-desc">Configure AI detection</div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <div class="system-status">
+                <div class="status-dot"></div>
+                <span>SYSTEM STATUS: OPERATIONAL</span>
+            </div>
+            <div class="footer-info">
+                <span>Fidelity NCRC Command Dashboard v2.4.1 | Last Updated: Today 15:30 UTC</span>
+            </div>
+        </footer>
+    </main>
+    
+    <!-- JavaScript -->
+    <script src="js/toggle.js"></script>
+    <script>
+        // Keep only the live data updates and console messages
+        // Toggle, search, and time functionality moved to toggle.js
+        
+        // Simulate live data updates
+        function updateLiveData() {
+            // Randomly update alert count
+            const alertBadge = document.querySelector('.alert-badge');
+            if (alertBadge) {
+                const currentAlerts = parseInt(alertBadge.textContent);
+                const newAlerts = Math.random() > 0.7 ? Math.min(5, currentAlerts + 1) : 
+                                 Math.random() < 0.2 ? Math.max(0, currentAlerts - 1) : currentAlerts;
+                
+                if (newAlerts !== currentAlerts) {
+                    alertBadge.textContent = newAlerts;
+                    alertBadge.style.animation = 'none';
+                    setTimeout(() => {
+                        alertBadge.style.animation = 'pulse 0.5s';
+                    }, 10);
+                }
+            }
+            
+            // Update camera online count
+            const camerasOnline = document.querySelector('.cameras-active .status-value');
+            if (camerasOnline) {
+                const currentCameras = parseInt(camerasOnline.textContent.split('/')[0]);
+                const totalCameras = 256;
+                
+                // Small chance to change camera status
+                if (Math.random() < 0.1) {
+                    const change = Math.random() > 0.5 ? 1 : -1;
+                    const newCameras = Math.min(totalCameras, Math.max(240, currentCameras + change));
+                    camerasOnline.textContent = `${newCameras}/${totalCameras}`;
+                }
+            }
+        }
+        
+        // Update data every 10 seconds
+        setInterval(updateLiveData, 10000);
+        
+        // Security-themed console message
+        console.log('%cFidelity NCRC Command Dashboard Active', 'color: #00ff9d; font-size: 18px; font-weight: bold;');
+        console.log('%cSecure connection established. All systems monitored.', 'color: #ffd700; font-size: 14px;');
+    </script>
+</body>
+</html>
