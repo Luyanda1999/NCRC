@@ -1,0 +1,7 @@
+[06-Feb-2026 07:56:06 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\luyan\OneDrive\Desktop\Glen\NCRC\api\config.php on line 31
+[06-Feb-2026 07:56:06 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\luyan\OneDrive\Desktop\Glen\NCRC\api\config.php on line 32
+[06-Feb-2026 07:56:06 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\luyan\OneDrive\Desktop\Glen\NCRC\api\config.php on line 33
+[06-Feb-2026 07:56:06 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\luyan\OneDrive\Desktop\Glen\NCRC\api\config.php on line 34
+[06-Feb-2026 07:56:06 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\luyan\OneDrive\Desktop\Glen\NCRC\api\config.php on line 35
+[06-Feb-2026 07:56:06 Europe/Berlin] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\luyan\OneDrive\Desktop\Glen\NCRC\api\config.php on line 36
+[06-Feb-2026 08:56:15 Africa/Harare] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 262144 bytes) in C:\Users\luyan\OneDrive\Desktop\Glen\NCRC\api\config.php on line 85
