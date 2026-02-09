@@ -47,7 +47,7 @@
                     <li class="nav-item">
                         <a href="Incident_table.html" class="nav-link active">
                             <i class="fas fa-table nav-icon"></i>
-                            <span>Incident Reports</span>
+                            <span>Incident Table</span>
                             <span class="nav-badge" id="incidentCountBadge">0</span>
                         </a>
                     </li>
@@ -70,7 +70,7 @@
                 <div class="nav-section-title">Administration</div>
                 <ul class="nav-items">
                     <li class="nav-item">
-                        <a href="personnel.html" class="nav-link">
+                        <a href="#" class="nav-link">
                             <i class="fas fa-users nav-icon"></i>
                             <span>Personnel</span>
                         </a>
@@ -87,10 +87,10 @@
         
         <div class="sidebar-footer">
             <div class="user-info">
-                <div class="user-avatar">J</div>
+                <div class="user-avatar">?</div>
                 <div class="user-details">
-                    <div class="user-name">John Doe</div>
-                    <div class="user-role">Security Manager</div>
+                    <div class="user-name">??</div>
+                    <div class="user-role">???</div>
                 </div>
             </div>
             <button class="logout-btn" id="logoutBtn">
@@ -205,6 +205,14 @@
                 <div class="filters-row">
                     
                     <div class="filter-group">
+                        <label class="filter-label">Date Range</label>
+                        <div class="date-range">
+                            <input type="date" class="filter-select" id="dateFrom">
+                            <input type="date" class="filter-select" id="dateTo">
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
                         <label class="filter-label">Location</label>
                         <select class="filter-select" id="locationFilter">
                             <option value="all">All Locations</option>
@@ -240,13 +248,7 @@
                         </select>
                     </div>
 
-                    <div class="filter-group">
-                        <label class="filter-label">Date Range</label>
-                        <div class="date-range">
-                            <input type="date" class="filter-select" id="dateFrom"><br>
-                            <input type="date" class="filter-select" id="dateTo">
-                        </div>
-                    </div>
+
                 </div>
                 
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
@@ -445,6 +447,8 @@
     </div>
 
     <!-- JavaScript -->
+    <script src="js/auth.js"></script>
     <script src="js/toggle.js"></script>
+    <script src="js/incident_table.js"></script>
 </body>
 </html>
